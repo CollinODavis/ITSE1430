@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * ITSE 1403
+ * Collin Davis
+ * Section1
+ * 
+ */
+using System;
 
 namespace Nile.Host
 {
@@ -9,18 +15,21 @@ namespace Nile.Host
            bool quit = false;
            while (!quit)
             {
+                //Equality
+                bool isEqual = quit.Equals(10);
+
                 //SHOW MENU
                 char choice = DisplayMenu();
 
 
                 //PROCESS MENU OPTIONS
-                switch (choice)
+                switch (Char.ToUpper(choice))
                 {
-                    case 'l':
+                    //case 'l':
                     case 'L': ListProducts(); break;
-                    case 'a':
+                    //case 'a':
                     case 'A': AddProduct(); break;
-                    case 'q':
+                    //case 'q':
                     case 'Q': quit = true; break;
                 };
             }
@@ -56,15 +65,14 @@ namespace Nile.Host
             {
                 Console.Write(message);
                 string value = Console.ReadLine();
-
                 
                 if (Decimal.TryParse(value, out decimal result))
                 {
                     if (result >= minValue)
                         return result;
                 };
-
-                Console.WriteLine("Must be a number and >= {0}", minValue);
+                string msg = String.Format("Must be a number and >= {0}", minValue);
+                Console.WriteLine(msg);
             } while (true);
         }
 
@@ -72,11 +80,22 @@ namespace Nile.Host
         private static void ListProducts()
         {
             //CHECK FOR PRODUCT
-            if (_name != null && _name != "")
+            if (!String.IsNullOrEmpty(_name)) 
             {
-                Console.WriteLine(_name);
-                Console.WriteLine(_price);
-                Console.WriteLine(_description);
+                //String formatting
+                //var msg = String.Format("{0} [${1}]", _name, _price);
+
+                //String concatenation
+                //var msg = _name + " [$" + _price + "]";
+
+                //String concat part 2
+                //var msg = String.Concat(_name + " [$" + _price + "]");
+
+                //String inerpolation
+                string msg = $"{_name} [${_price}]";
+                Console.WriteLine(msg);
+                if (!String.IsNullOrEmpty(_description))
+                    Console.WriteLine(_description);
             } else
                 Console.WriteLine("No products"); 
         }
@@ -97,12 +116,27 @@ namespace Nile.Host
                 Console.WriteLine("(Q)uit");
 
                 string input = Console.ReadLine();
+                //Removes white space
+                input = input.Trim();
+                //input.ToLower();
+                input = input.ToUpper();
 
-                if (input == "L" || input == "l")
+                //Padding
+                //input = input.PadLeft(10);
+
+                //Starts/ends with
+                //input.StartsWith(@"\");
+                //input.EndsWith(@"\");
+
+                //Substring
+                //string newvalue = input.Substring(0, 10);
+
+                //if (input == "L")
+                if (String.Compare(input, "L") ==0)
                     return input[0];
-                else if (input == "A" || input == "a")
+                else if (input == "A")
                     return input[0];
-                else if (input == "Q" || input == "q")
+                else if (input == "Q")
                     return input[0];
                
                 Console.WriteLine("Please choose a valid option");
