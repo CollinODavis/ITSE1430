@@ -1,8 +1,15 @@
-﻿using System;
+﻿/*
+ * ITSE 1403
+ * Collin Davis
+ * LAB1
+ * 
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace CollinDavis.MovieLib.Host
 {
@@ -105,7 +112,7 @@ namespace CollinDavis.MovieLib.Host
             {
                     Console.WriteLine("TITLE: " + s_title);
                     Console.WriteLine("GENRE: " + s_genre);
-                    Console.WriteLine("LENGTH :" + s_length);
+                    Console.WriteLine("LENGTH:" + s_length);
                     Console.WriteLine("OWNED: " + s_owned);
                 if (!String.IsNullOrEmpty(s_desc))
                     Console.WriteLine("DESCRIPTION: " + s_desc);
